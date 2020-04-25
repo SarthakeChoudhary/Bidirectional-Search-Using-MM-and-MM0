@@ -66,3 +66,4 @@ def biDiMM0(problem):
                     
                     Qb.push((x[0], pathb+[x[1]], costb+x[2]), costb+x[2])
     return False
+
