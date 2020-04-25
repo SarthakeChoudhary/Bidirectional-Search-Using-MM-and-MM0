@@ -1,0 +1,68 @@
+def biDiMM0(problem):
+    
+    from util import PriorityQueue
+    from game import Actions
+    
+    def PathReverse(p):
+        """
+        Given a action list, return the reversed version of it.
+        """
+        path=[]
+        for x in p:
+            path.append(Actions.reverseDirection(x))
+        path.reverse()
+        return path
+    
+
+    
+    Qf= PriorityQueue()
+    Qb=PriorityQueue()
+    Visitedf= set()
+    Visitedb= set()
+    
+    pathf=[]
+    pathb=[]
+
+    Qf.push((problem.getStartState(),[],0),0)
+    Qb.push((problem.goal(),[],0),0)
+    
+    while(True):
+        #Forward Search
+        currentstatef=Qf.pop()[0]
+        #Forward Direction
+        pathf=Qf.pop()[1]
+        #Forward Cost
+        costf=Qf.pop()[2]
+        if currentstatef not in Visitedf:
+            Visitedf.add(currentstatef)
+            
+            if problem.isGoalState(currentstatef):
+                return pathf
+            elif (currentstatef in Visitedb):
+                path=pathf+PathReverse(pathb)
+                return path
+            else:
+                currentsuccessorsf=problem.getSuccessors(currentstatef)
+                for x in currentsuccessorsf:
+                    
+                    Qf.push((x[0], pathf+[x[1]], costf+x[2]), costf+x[2])
+        #Backward Search
+        currentstateb=Qf.pop()[0]
+        #Backward Direction
+        pathb=Qb.pop()[1]
+        #Backward Cost
+        costb=Qb.pop()[2]
+        if currentstateb not in Visitedb:
+            Visitedb.add(currentstateb)
+    
+            if problem.isGoalState(currentstateb):
+                return PathReverse(pathb)
+            elif (currentstateb in Visitedf):
+                path=pathf+PathReverse(pathb)
+                return path
+            else:
+                currentsuccessorsb=problem.getSuccessors(currentstateb)
+                for x in currentsuccessorsb:
+                    
+                    Qb.push((x[0], pathb+[x[1]], costb+x[2]), costb+x[2])
+    return False
