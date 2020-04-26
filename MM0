@@ -32,11 +32,8 @@ def MM0(problem):
     ClosedF=[]
     ClosedB=[]
     
-    path=[]
-    pathF=[]
-    pathB=[]
     
-    while not OpenF.isEmpty() and not OpenB.isEmpty():
+    while (not OpenF.isEmpty()) and (not OpenB.isEmpty()):
         
         CurrentPopF=OpenF.pop()
         CurrentPopB=OpenB.pop()
@@ -44,14 +41,14 @@ def MM0(problem):
         StateB=CurrentPopB[0]
         gF=CurrentPopF[2]
         gB=CurrentPopB[2]
+        pathF=CurrentPopF[1]
+        pathB=CurrentPopB[1]
 
         
-        prminF= 2*gF
-        prminB= 2*gB
 
-        C=min(prminF,prminB)
+        C=min(gF,gB)
         
-        if C == prminF:
+        if (C == gF):
             if StateF not in ClosedF:
                 ClosedF.append(StateF)
 
@@ -78,4 +75,4 @@ def MM0(problem):
                         OpenB.push((x[0], pathB+[x[1]], gB+x[2]),gB+x[2])
                         pathB += [x[1]]
 
-        return path
+        return []
