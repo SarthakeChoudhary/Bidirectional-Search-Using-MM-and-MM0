@@ -27,8 +27,8 @@ def MM0(problem):
     OpenF=PriorityQueue()
     OpenB=PriorityQueue()
     
-    OpenF.push((problem.getStartState(),[],0),gF)
-    OpenB.push((problem.getGoalState(),[],0),gB)
+    OpenF.push((problem.getStartState(),[],0),0)
+    OpenB.push((problem.getGoalState(),[],0),0)
     
     ClosedF=[]
     ClosedB=[]
@@ -60,7 +60,7 @@ def MM0(problem):
         
         C=min(prminF,prminB)
         
-        if U <= max(C,gminF+gminB+epsilon):
+        if U <= (gminF+gminB+epsilon):
             path=pathF+PathReverse(pathB)
             return path
         
@@ -70,24 +70,26 @@ def MM0(problem):
     
                 SuccessorsF=problem.getSuccessors(StateF)
                 for x in SuccessorsF:
-                    OpenF.push((x[0], path+[x[1]], gF+x[2]),gF+x[2])
+                    OpenF.push((x[0], pathF+[x[1]], gF+x[2]),gF+x[2])
                     gFval.append(gF+x[2])
                     cost.append(x[2])
                     
                     if x[0] in OpenB:
                         pathF +=x[2]
                         U=min(U,gF+gB)
+
         else:
             if StateB not in ClosedB:
-                ClosedF.append(StateB)
+                ClosedB.append(StateB)
     
                 SuccessorsB=problem.getSuccessors(StateB)
                 for x in SuccessorsB:
-                    OpenB.push((x[0], path+[x[1]], gF+x[2]),gB+x[2])
+                    OpenB.push((x[0], pathB+[x[1]], gB+x[2]),gB+x[2])
                     gBval.append(gB+x[2])
                     cost.append(x[2])
                     
                     if x[0] in OpenF:
                         pathB +=x[2]
                         U=min(U,gF+gB)
+
         return float('inf')
