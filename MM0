@@ -1,7 +1,6 @@
-def biDiMM0(problem):
+def MM0(problem):
     
     from util import PriorityQueue
-    from game import Actions
     
     def PathReverse(p):
         """
@@ -9,61 +8,86 @@ def biDiMM0(problem):
         """
         path=[]
         for x in p:
-            path.append(Actions.reverseDirection(x))
-        path.reverse()
-        return path
+            if x == 'NORTH':
+                x= 'SOUTH'
+                path.append(x)
+            if x== 'SOUTH':
+                x= 'NORTH'
+                path.append(x)
+            if x== 'WEST':
+                x='EAST'
+                path.append(x)
+            if x== 'EAST':
+                x='WEST'
+                path.append(x) 
+        return path[::-1]
     
-
+    gF=0
+    gB=0
+    OpenF=PriorityQueue()
+    OpenB=PriorityQueue()
     
-    Qf= PriorityQueue()
-    Qb=PriorityQueue()
-    Visitedf= set()
-    Visitedb= set()
+    OpenF.push((problem.getStartState(),[],0),gF)
+    OpenB.push((problem.getGoalState(),[],0),gB)
     
-    pathf=[]
-    pathb=[]
-
-    Qf.push((problem.getStartState(),[],0),0)
-    Qb.push((problem.goal(),[],0),0)
+    ClosedF=[]
+    ClosedB=[]
     
-    while(True):
-        #Forward Search
-        currentstatef=Qf.pop()[0]
-        #Forward Direction
-        pathf=Qf.pop()[1]
-        #Forward Cost
-        costf=Qf.pop()[2]
-        if currentstatef not in Visitedf:
-            Visitedf.add(currentstatef)
-            
-            if problem.isGoalState(currentstatef):
-                return pathf
-            elif (currentstatef in Visitedb):
-                path=pathf+PathReverse(pathb)
-                return path
-            else:
-                currentsuccessorsf=problem.getSuccessors(currentstatef)
-                for x in currentsuccessorsf:
+    cost=[]
+    gFval=[]
+    gBval=[]
+    
+    path=[]
+    pathF=[]
+    pathB=[]
+    
+    U= float('inf')
+    
+    while not OpenF.isEmpty() and not OpenB.isEmpty:
+        
+        StateF=OpenF.pop()[0]
+        StateB=OpenB.pop()[0]
+        gF=OpenF.pop()[2]
+        gB=OpenB.pop()[2]
+        
+        epsilon=min(cost)
+        gminF=min(gFval)
+        gminB=min(gBval)
+        
+        
+        prminF= 2*gF
+        prminB= 2*gB
+        
+        C=min(prminF,prminB)
+        
+        if U <= max(C,gminF+gminB+epsilon):
+            path=pathF+PathReverse(pathB)
+            return path
+        
+        if C == prminF:
+            if StateF not in ClosedF:
+                ClosedF.append(StateF)
+    
+                SuccessorsF=problem.getSuccessors(StateF)
+                for x in SuccessorsF:
+                    OpenF.push((x[0], path+[x[1]], gF+x[2]),gF+x[2])
+                    gFval.append(gF+x[2])
+                    cost.append(x[2])
                     
-                    Qf.push((x[0], pathf+[x[1]], costf+x[2]), costf+x[2])
-        #Backward Search
-        currentstateb=Qf.pop()[0]
-        #Backward Direction
-        pathb=Qb.pop()[1]
-        #Backward Cost
-        costb=Qb.pop()[2]
-        if currentstateb not in Visitedb:
-            Visitedb.add(currentstateb)
+                    if x[0] in OpenB:
+                        pathF +=x[2]
+                        U=min(U,gF+gB)
+        else:
+            if StateB not in ClosedB:
+                ClosedF.append(StateB)
     
-            if problem.isGoalState(currentstateb):
-                return PathReverse(pathb)
-            elif (currentstateb in Visitedf):
-                path=pathf+PathReverse(pathb)
-                return path
-            else:
-                currentsuccessorsb=problem.getSuccessors(currentstateb)
-                for x in currentsuccessorsb:
+                SuccessorsB=problem.getSuccessors(StateB)
+                for x in SuccessorsB:
+                    OpenB.push((x[0], path+[x[1]], gF+x[2]),gB+x[2])
+                    gBval.append(gB+x[2])
+                    cost.append(x[2])
                     
-                    Qb.push((x[0], pathb+[x[1]], costb+x[2]), costb+x[2])
-    return False
-
+                    if x[0] in OpenF:
+                        pathB +=x[2]
+                        U=min(U,gF+gB)
+        return float('inf')
