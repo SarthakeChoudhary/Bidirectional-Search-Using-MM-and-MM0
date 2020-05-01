@@ -11,30 +11,37 @@ The pseudocode is inspired from the paper “Bidirectional Search That Is Guaran
 Python 2 
 
 # How to run:
-Navigate to to the search folder and enter the following commands:
+Navigate to to the search folder of Bidirectional_Search and enter the following commands:
 The code can be tested for different maze size namely: tiny, medium and big
+
 ## To check the results for 0% complexity:
 
-* To run A*, 
-* To run MM0,
-* To run MM,
+* To run A*, python pacman.py -l tinyMaze0 -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic 
+* To run MM0, python pacman.py -l tinyMaze0 -z .5 -p SearchAgent -a fn=bdmm0,heuristic=manhattanHeuristic
+* To run MM, python pacman.py -l tinyMaze0 -z .5 -p SearchAgent -a fn=bdmm,heuristic=manhattanHeuristic
+
+* To check the complexity for medium and big maze, replace tinyMaze0 by mediumMaze0 or bigMaze0
 
 ## To check the results for 30% complexity:
 
-* To run A*,
-* To run MM0,
-* To run MM,
+* To run A*, python pacman.py -l mediumMaze30 -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
+* To run MM0, python pacman.py -l mediumMaze30 -z .5 -p SearchAgent -a fn=bdmm0,heuristic=manhattanHeuristic
+* To run MM, python pacman.py -l mediumMaze30 -z .5 -p SearchAgent -a fn=bdmm,heuristic=manhattanHeuristic
+
+* To check the complexity for tiny and big maze, replace mediumMaze30 by tinyMaze30 or bigMaze30
 
 ## To check the results for 50% complexity:
 
-* To run A*,
-* To run MM0,
-* To run MM,
+* To run A*, python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
+* To run MM0, python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=bdmm0,heuristic=manhattanHeuristic
+* To run MM, python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=bdmm,heuristic=manhattanHeuristic
+
+* To check the complexity for medium and tiny maze, replace bigMaze50 by mediumMaze50 or tinyMaze50
 
 # Team Members:
 * Sarthake Choudhary
 * Ashish Verma
-* Ibrahi Hasan
+* Ibrahim Hasan
 * Anusha Vaidya
 
    
