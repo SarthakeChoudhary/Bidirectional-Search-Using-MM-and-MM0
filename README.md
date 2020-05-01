@@ -15,26 +15,26 @@ Navigate to to the search folder and enter the following commands:
 The code can be tested for different maze size namely: tiny, medium and big
 ## To check the results for 0% complexity:
 
-*To run A*, 
-*To run MM0,
-*To run MM,
+* To run A*, 
+* To run MM0,
+* To run MM,
 
 ## To check the results for 30% complexity:
 
-To run A*,
-To run MM0,
-To run MM,
+* To run A*,
+* To run MM0,
+* To run MM,
 
 ## To check the results for 50% complexity:
 
-To run A*,
-To run MM0,
-To run MM,
+* To run A*,
+* To run MM0,
+* To run MM,
 
 # Team Members:
-Sarthake Choudhary
-Ashish Verma
-Ibrahi Hasan
-Anusha Vaidya
+* Sarthake Choudhary
+* Ashish Verma
+* Ibrahi Hasan
+* Anusha Vaidya
 
    
