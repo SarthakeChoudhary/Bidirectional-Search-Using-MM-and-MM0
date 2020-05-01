@@ -11,7 +11,7 @@ The pseudocode is inspired from the paper “Bidirectional Search That Is Guaran
 Python 2 
 
 # How to run:
-Navigate to to the search folder of Bidirectional_Search and enter the following commands:
+Navigate to the search folder of Bidirectional_Search and enter the following commands:
 The code can be tested for different maze size namely: tiny, medium and big
 
 ## To check the results for 0% complexity:
