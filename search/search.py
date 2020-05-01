@@ -413,5 +413,5 @@ bfs = breadthFirstSearch
 dfs = depthFirstSearch
 astar = aStarSearch
 ucs = uniformCostSearch
-mm0 = MM0
-mm = MM
+bdmm0 = MM0
+bdmm = MM
