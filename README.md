@@ -38,7 +38,7 @@ The code can be tested for different maze size namely: tiny, medium and big
 * To run BFS, python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=bfs
 * To run DFS, python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=dfs
 
-* To check the complexity for medium and tiny maze, replace bigMaze50 by mediumMaze50 or tinyMaze50
+* To check the complexity for medium maze, replace bigMaze50 by mediumMaze50 
 
 # Team Members:
 * Sarthake Choudhary
