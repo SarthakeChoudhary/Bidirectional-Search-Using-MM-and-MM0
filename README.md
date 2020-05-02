@@ -19,7 +19,7 @@ Navigate to the search folder of Bidirectional_Search. To test the alogrithms on
 * MM0 :- python pacman.py -l tinyMaze0 -z .5 -p SearchAgent -a fn=bdmm0,heuristic=manhattanHeuristic
 * MM :- python pacman.py -l tinyMaze0 -z .5 -p SearchAgent -a fn=bdmm,heuristic=manhattanHeuristic
 
-* To check the complexity for medium and big maze, replace tinyMaze0 by mediumMaze0 or bigMaze0
+ To check the complexity for medium and big maze, replace tinyMaze0 by mediumMaze0 or bigMaze0
 
 ## To check the results for 30% complexity:
 
@@ -27,7 +27,7 @@ Navigate to the search folder of Bidirectional_Search. To test the alogrithms on
 * MM0 :- python pacman.py -l mediumMaze30 -z .5 -p SearchAgent -a fn=bdmm0,heuristic=manhattanHeuristic
 * MM :- python pacman.py -l mediumMaze30 -z .5 -p SearchAgent -a fn=bdmm,heuristic=manhattanHeuristic
 
-* To check the complexity for tiny and big maze, replace mediumMaze30 by tinyMaze30 or bigMaze30
+ To check the complexity for tiny and big maze, replace mediumMaze30 by tinyMaze30 or bigMaze30
 
 ## To check the results for 50% complexity:
 
@@ -37,5 +37,5 @@ Navigate to the search folder of Bidirectional_Search. To test the alogrithms on
 * BFS :- python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=bfs
 * DFS :- python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=dfs
 
-* To check the complexity for medium maze, replace bigMaze50 by mediumMaze50 
+ To check the complexity for medium maze, replace bigMaze50 by mediumMaze50 
 
