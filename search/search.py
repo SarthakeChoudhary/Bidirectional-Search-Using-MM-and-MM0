@@ -236,10 +236,10 @@ def MM0(problem):
     OpenF.push((problem.getStartState(), [], 0), 2 * gF)
     OpenB.push((problem.goal, [], 0), 2 * gB)
 
-    ClosedF = {}
-    ClosedB = {}
-    gF_dic = {}
-    gB_dic = {}
+    ClosedF = {}                                                # dictionary to store the path to reach the node from start node, with the key being its location
+    ClosedB = {}                                                # dictionary to store the path to reach the node from goal node, with the key being its location
+    gF_dic = {}                                                 # dictionary to store the cost to reach the node from start node, with the key being its location
+    gB_dic = {}                                                 # dictionary to store the cost to reach the node from goal node, with the key being its location
     gF_dic[problem.getStartState()] = gF
     gB_dic[problem.goal] = gB
     U = float('inf')
@@ -255,7 +255,7 @@ def MM0(problem):
         pathF = CurrentPopF[1]
         pathB = CurrentPopB[1]
 
-        C = min(gF, gB)
+        C = min(gF, gB)     
 
         if StateF == StateB:
             print('reached goal1')
@@ -270,19 +270,19 @@ def MM0(problem):
             print('reached goal3')
             return pathF + PathReverse(pathB)
 
-        if (C == gF):
-            OpenB.push(CurrentPopB,2 * gB)
-            ClosedF[CurrentPopF[0]] = pathF
+        if (C == gF):                                           # If the cost of expanding a node in the forward iteration is lesser, then expand node in forward direction
+            OpenB.push(CurrentPopB,2 * gB)                      # Push back the popped node of backward iteration in the queue
+            ClosedF[CurrentPopF[0]] = pathF                     # store the popped node's path in dictionary closedF with key as the node's location
             SuccessorsF = problem.getSuccessors(StateF)
             for i in SuccessorsF:
-                if OpenF.isthere(i[0]) or i[0] in ClosedF:
-                    if gF_dic[i[0]] < gF + i[2]:
+                if OpenF.isthere(i[0]) or i[0] in ClosedF:      # check if successor is already present in OpenF or in ClosedF(i.e. already visited nodes)
+                    if gF_dic[i[0]] < gF + i[2]:                # If yes, check if this node's stored cost is less than sum of cost to current node + cost of edge to the successor node 
                         continue
-                    if OpenF.isthere(i[0]):
-                        OpenF.remove_by_value(i[0])
+                    if OpenF.isthere(i[0]):                     
+                        OpenF.remove_by_value(i[0])             # Remove node from OpenF queue if the successor node is present there. Check function in util.py.
                     elif i[0] in ClosedF:
-                        del ClosedF[i[0]]
-                gF_dic[i[0]] = gF + i[2]
+                        del ClosedF[i[0]]                       # remove node from ClosedF if the successor node is present there
+                gF_dic[i[0]] = gF + i[2]                        # update the cost to reach the succesor node and then push it to the queue
                 OpenF.push((i[0], pathF + [i[1]], gF + i[2]),2*(gF + i[2]))
 
         else:
@@ -334,13 +334,12 @@ def MM(problem,heuristic=nullHeuristic):
     OpenF.push((problem.getStartState(), [], 0), max(hf,2 * gF))
     OpenB.push((problem.goal, [], 0), max(hb,2 * gB))
 
-    ClosedF = {}
-    ClosedB = {}
-    gF_dic = {}
-    gB_dic = {}
+    ClosedF = {}                            # dictionary to store the path to reach the node from start node, with the key being its location
+    ClosedB = {}                            # dictionary to store the cost to reach the node from goal node, with the key being its location
+    gF_dic = {}                             # dictionary to store the cost to reach the node from start node, with the key being its location 
+    gB_dic = {}                             # dictionary to store the cost to reach the node from goal node, with the key being its location
     gF_dic[problem.getStartState()] = gF
     gB_dic[problem.goal] = gB
-    U = float('inf')
 
     while (not OpenF.isEmpty()) and (not OpenB.isEmpty()):
 
@@ -353,14 +352,13 @@ def MM(problem,heuristic=nullHeuristic):
         pathF = CurrentPopF[1]
         pathB = CurrentPopB[1]
 
-        C = min(gF, gB)
+        C = min(gF, gB)                             # check expnding which node is less costlier, i.e. node in the forward direction or the node in backward direction.
 
         if StateF == StateB:
             print('reached goal1')
             return pathF + PathReverse(pathB)
         if StateF in ClosedB:
             pathB = ClosedB[StateF]
-            print(ClosedB, ClosedF, StateF)
             print('reached goal2')
             return pathF + PathReverse(pathB)
         if StateB in ClosedF:
@@ -368,21 +366,21 @@ def MM(problem,heuristic=nullHeuristic):
             print('reached goal3')
             return pathF + PathReverse(pathB)
 
-        if (C == gF):
-            OpenB.push(CurrentPopB, gB)
-            ClosedF[CurrentPopF[0]] = pathF
+        if (C == gF):                                  # If the cost of expanding a node in the forward iteration is lesser, then expand node in forward direction
+            OpenB.push(CurrentPopB, gB)                # Push back the popped node of backward iteration in the queue
+            ClosedF[CurrentPopF[0]] = pathF            # store the popped node's path in dictionary closedF with key as the node's location
             SuccessorsF = problem.getSuccessors(StateF)
-            for i in SuccessorsF:
+            for i in SuccessorsF:                   
                 h_f = heuristic(i[0],problem)
-                if OpenF.isthere(i[0]) or i[0] in ClosedF:
-                    if gF_dic[i[0]] < gF + i[2]:
+                if OpenF.isthere(i[0]) or i[0] in ClosedF:       # check if successor is already present in OpenF or in ClosedF(i.e. already visited nodes)
+                    if gF_dic[i[0]] < gF + i[2]:                 # If yes, check if this node's stored cost is less than sum of cost to current node + cost of edge to the successor node 
                         continue
-                    if OpenF.isthere(i[0]):
-                        OpenF.remove_by_value(i[0])
+                    if OpenF.isthere(i[0]):                      
+                        OpenF.remove_by_value(i[0])               # Remove node from OpenF queue if the successor node is present there. Check function in util.py. 
                     elif i[0] in ClosedF:
-                        del ClosedF[i[0]]
-                gF_dic[i[0]] = gF + i[2]
-                ff = h_f + gF + i[2]
+                        del ClosedF[i[0]]                         # remove node from ClosedF if the successor node is present there  
+                gF_dic[i[0]] = gF + i[2]                          # update the cost to reach the succesor node and then push it to the queue  
+                ff = h_f + gF + i[2]                             
                 OpenF.push((i[0], pathF + [i[1]], max(ff,2*(gF + i[2]))),max(ff,2*(gF + i[2])))
 
                 # if OpenB.isthere(i[0]):
