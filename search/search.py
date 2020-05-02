@@ -99,9 +99,7 @@ def depthFirstSearch(problem):
 
     while (not stack.isEmpty()):
         temp = stack.pop()
-        print(temp)
         if problem.isGoalState(temp[0]):
-            print(temp[2])
             return temp[1]
 
         if (temp[0] not in visited):           #if current position not in visited nodes, add it to the visited list
@@ -159,7 +157,6 @@ def uniformCostSearch(problem):
         temp = pqueue.pop()
 
         if problem.isGoalState(temp[0]):
-            print(temp[2])
             return temp[1]
 
         if (temp[0] not in visited):        #if current position not in visited nodes, add it to the visited list
@@ -262,7 +259,6 @@ def MM0(problem):
             return pathF + PathReverse(pathB)
         if StateF in ClosedB:
             pathB = ClosedB[StateF]
-            print(ClosedB, ClosedF, StateF)
             print('reached goal2')
             return pathF + PathReverse(pathB)
         if StateB in ClosedF:
