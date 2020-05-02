@@ -1,4 +1,13 @@
-# Implementation of Bi-directional Search using MM, MM0 in Pac-Man Domain
+# S-AI 
+
+#Names of Team Members:
+* Sarthake Choudhary
+* Ashish Verma
+* Ibrahim Hasan
+* Anusha Vaidya
+
+
+# Topic Choosen : Implementation of Bi-directional Search using MM, MM0 in Pac-Man Domain
 
 We have implemented a Bi-diretional Serach using MM and MM0 algorithm, for a Pac-Man Domain, which is guaranteed to meet in the middle. We have provided a comparative stduy of MM, MM0, A*, BFS and DFS. These algorithms are tested in different environments, ranging in size, number of obstacles (complexity) and the initial positions of Pacman.
 
@@ -39,3 +48,8 @@ Navigate to the search folder of Bidirectional_Search. To test the alogrithms on
 
  To check the complexity for medium maze, replace bigMaze50 by mediumMaze50 
 
+# Contribution of each team member:
+* ANUSHA VAIDYA :  Implemented Code for MM and MM0, performed test cases, and Report proofreading
+* IBRAHIM HASAN : Worked upon MM0, Trouble shooting, data tabulation and report preparation
+* ASHISH VERMA  : Report preparation, Trouble shooting and analysing data for results 
+* SARTHAKE CHOUDHARY : Implemented code for MM and MM0, prepared multiple test scenarios, performed troubleshooting and report proofreading
