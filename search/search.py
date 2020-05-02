@@ -207,7 +207,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
 def MM0(problem):
     def PathReverse(p):
         """
-        Given a action list, return the reversed version of it.
+        Given a action list, return the reversed version of it for the nodes expanding in the backward direction.
         """
         path = []
         for x in p:
@@ -225,13 +225,13 @@ def MM0(problem):
                 path.append(z)
         return path[::-1]
 
-    gF = 0
-    epsilon = 1
+    gF = 0                                                     # initialize gF value to be 0 as the cost of returning to the start state from the start node is zero
+    
     gB = 0
-    OpenF = util.PriorityQueue()
-    OpenB = util.PriorityQueue()
-    OpenF.push((problem.getStartState(), [], 0), 2 * gF)
-    OpenB.push((problem.goal, [], 0), 2 * gB)
+    OpenF = util.PriorityQueue()                               # create a Priority Queue to store all the nodes expanded in the forward direction
+    OpenB = util.PriorityQueue()                               # craete a Priority Queue to store all the nodes expanded in the backward direction
+    OpenF.push((problem.getStartState(), [], 0), 2 * gF)       # push the start state to the Queue.Since the heuristic value is zero we take into account the the value of max(g,2*g) = 2*g  
+    OpenB.push((problem.goal, [], 0), 2 * gB)                  # push the goal state to the Queue 
 
     ClosedF = {}                                                # dictionary to store the path to reach the node from start node, with the key being its location
     ClosedB = {}                                                # dictionary to store the path to reach the node from goal node, with the key being its location
@@ -252,7 +252,7 @@ def MM0(problem):
         pathF = CurrentPopF[1]
         pathB = CurrentPopB[1]
 
-        C = min(gF, gB)     
+        C = min(gF, gB)                                          # find the minimum cost value (i.e from the forward node and backward node)
 
         if StateF == StateB:
             print('reached goal1')
@@ -302,7 +302,7 @@ def MM0(problem):
 def MM(problem,heuristic=nullHeuristic):
     def PathReverse(p):
         """
-        Given a action list, return the reversed version of it.
+        Given a action list, return the reversed version of it for the nodes expanded in the backward direction.
         """
         path = []
         for x in p:
@@ -350,14 +350,14 @@ def MM(problem,heuristic=nullHeuristic):
 
         C = min(gF, gB)                             # check expnding which node is less costlier, i.e. node in the forward direction or the node in backward direction.
 
-        if StateF == StateB:
+        if StateF == StateB:                        # check if the current nodes of forward and backward are meeting
             print('reached goal1')
             return pathF + PathReverse(pathB)
-        if StateF in ClosedB:
+        if StateF in ClosedB:                       # check if the node to be expanded is alredy present in the array which stores the node expanded by the backward search
             pathB = ClosedB[StateF]
             print('reached goal2')
             return pathF + PathReverse(pathB)
-        if StateB in ClosedF:
+        if StateB in ClosedF:                        # check if the node to be expanded is already present in the ClosedF(forward) array
             pathF = ClosedF[StateB]
             print('reached goal3')
             return pathF + PathReverse(pathB)
@@ -376,8 +376,8 @@ def MM(problem,heuristic=nullHeuristic):
                     elif i[0] in ClosedF:
                         del ClosedF[i[0]]                         # remove node from ClosedF if the successor node is present there  
                 gF_dic[i[0]] = gF + i[2]                          # update the cost to reach the succesor node and then push it to the queue  
-                ff = h_f + gF + i[2]                             
-                OpenF.push((i[0], pathF + [i[1]], max(ff,2*(gF + i[2]))),max(ff,2*(gF + i[2])))
+                ff = h_f + gF + i[2]                              # f(x) = g(x) + h(x)
+                OpenF.push((i[0], pathF + [i[1]], max(ff,2*(gF + i[2]))),max(ff,2*(gF + i[2])))  # choose the cost value which satisfies max(f(x),2*g(x)) as the priority value
 
                 # if OpenB.isthere(i[0]):
                 #     U = min(U, gF_dic[i[0]] + gB_dic[1[0]])
@@ -395,11 +395,10 @@ def MM(problem,heuristic=nullHeuristic):
                     elif i[0] in ClosedB:
                         del ClosedB[i[0]]
                 gB_dic[i[0]] = gB + i[2]
-                fb = h_b + gB + i[2]
+                fb = h_b + gB + i[2]                              
                 OpenB.push((i[0], pathB + [i[1]], max(fb,2*(gB + i[2]))), max(fb,2*(gB + i[2])))
 
-                # if OpenF.isthere(i[0]):
-                #     U = min(U, gF_dic[i[0]] + gB_dic[1[0]])
+               
     return[]
 
 # Abbreviations
