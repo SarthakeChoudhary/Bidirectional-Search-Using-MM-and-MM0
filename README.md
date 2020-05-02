@@ -1,6 +1,6 @@
 # Implementation of Bi-directional Search using MM, MM0 in Pac-Man Domain
 
-We have implemented a Bi-diretional Serach using MM and MM0 algorithm for a Pac-Man Domain which is guaranteed to meet in the middle. We are also provinding a comparative analysis of this algorithm with that of A* search. The algorithm is tested for different range of complexity(obstacles encountered by the Pac-Man) namely for 0%,30% and 50% respectively.
+We have implemented a Bi-diretional Serach using MM and MM0 algorithm for a Pac-Man Domain which is guaranteed to meet in the middle. We are also provinding a comparative analysis of this algorithm with that of A* search. The algorithm is tested for different range of complexity as in the percentage of the obstacles in the environment and also with different initial positions of the Pacman.
 
 
 The pseudocode is inspired from the paper “Bidirectional Search That Is Guaranteed to Meet in the Middle”, Robert C. Holte, Ariel Felner, Guni Sharon, Nathan R. Sturtevant, AAAI 2016.
@@ -35,6 +35,8 @@ The code can be tested for different maze size namely: tiny, medium and big
 * To run A*, python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic
 * To run MM0, python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=bdmm0,heuristic=manhattanHeuristic
 * To run MM, python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=bdmm,heuristic=manhattanHeuristic
+* To run BFS, python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=bfs
+* To run DFS, python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=dfs
 
 * To check the complexity for medium and tiny maze, replace bigMaze50 by mediumMaze50 or tinyMaze50
 
