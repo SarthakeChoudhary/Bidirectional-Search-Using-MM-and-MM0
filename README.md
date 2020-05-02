@@ -1,6 +1,6 @@
 # S-AI 
 
-#Names of Team Members:
+# Names of Team Members:
 * Sarthake Choudhary
 * Ashish Verma
 * Ibrahim Hasan
