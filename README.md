@@ -1,11 +1,3 @@
-# S-AI 
-
-# Names of Team Members:
-* Sarthake Choudhary
-* Ashish Verma
-* Ibrahim Hasan
-* Anusha Vaidya
-
 
 # Topic Choosen : Implementation of Bi-directional Search using MM, MM0 in Pac-Man Domain
 
