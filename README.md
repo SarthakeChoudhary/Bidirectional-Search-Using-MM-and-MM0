@@ -39,9 +39,3 @@ Navigate to the search folder of Bidirectional_Search. To test the alogrithms on
 * DFS :- python pacman.py -l bigMaze50 -z .5 -p SearchAgent -a fn=dfs
 
  To check the complexity for medium maze, replace bigMaze50 by mediumMaze50 
-
-# Contribution of each team member:
-* ANUSHA VAIDYA :  Implemented Code for MM and MM0, performed test cases, and Report proofreading
-* IBRAHIM HASAN : Worked upon MM0, Trouble shooting, data tabulation and report preparation
-* ASHISH VERMA  : Report preparation, Trouble shooting and analysing data for results 
-* SARTHAKE CHOUDHARY : Implemented code for MM and MM0, prepared multiple test scenarios, performed troubleshooting and report proofreading
