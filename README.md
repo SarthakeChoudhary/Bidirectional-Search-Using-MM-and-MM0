@@ -1,5 +1,5 @@
 
-# Topic Choosen : Implementation of Bi-directional Search using MM, MM0 in Pac-Man Domain
+# Topic chosen : Implementation of Bi-directional Search using MM, MM0 in Pac-Man Domain
 
 We have implemented a Bi-diretional Serach using MM and MM0 algorithm, for a Pac-Man Domain, which is guaranteed to meet in the middle. We have provided a comparative stduy of MM, MM0, A*, BFS and DFS. These algorithms are tested in different environments, ranging in size, number of obstacles (complexity) and the initial positions of Pacman.
 
